@@ -2,22 +2,27 @@
 
 namespace PersonalProjects\DesignPattern;
 
+use PersonalProjects\DesignPattern\discounts\MoreThanFiveHundredDiscount;
+use PersonalProjects\DesignPattern\discounts\MoreThanFiveItensDiscount;
+use PersonalProjects\DesignPattern\discounts\WithoutDiscount;
 use PersonalProjects\DesignPattern\Taxes\Tax;
 
 class DiscountCalculator
 {
-    // If the quantity of items in the budget is greater
-    // than 5, it will give a 10 % discount
+    // The Discounts must obey a rule. First, only the 
+    // discount has to be applied when the budget has more than 5 items.
+    // If you do not comply with this rule, you should try to give a
+    // discount when the budget amount is greater than 500.
+    // Otherwise, no discount will be made
+
     public function calculateDiscount(Budget $budget): float
     {
-        if ($budget->quantityItens > 5) {
-            return $budget->value * .1;
-        }
+        $discountsChain = new MoreThanFiveItensDiscount(
+            new MoreThanFiveHundredDiscount(
+                new WithoutDiscount()
+            )
+        );
 
-        if ($budget->value > 500) {
-            return $budget->value * .05;
-        }
-
-        return 0;
+        return $discountsChain->calculateDiscount($budget);
     }
 }

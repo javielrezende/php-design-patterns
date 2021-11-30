@@ -37,3 +37,9 @@ $budget->value = 600;
 
 echo "Test - Should return 30" . PHP_EOL;
 echo $calculator->calculateDiscount($budget) . PHP_EOL;
+
+$budget->value = 600;
+$budget->quantityItens = 7;
+
+echo "Test - Should return 60" . PHP_EOL;
+echo $calculator->calculateDiscount($budget) . PHP_EOL;
