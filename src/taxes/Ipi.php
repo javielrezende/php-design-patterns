@@ -4,14 +4,20 @@ namespace PersonalProjects\DesignPattern\Taxes;
 
 use PersonalProjects\DesignPattern\Budget;
 
-class Ipi implements Tax
+class Ipi extends TwoRateTax
 {
-    public function taxCalculate(Budget $budget): float
+    protected function mustApplyMaximumTax(Budget $budget): bool
     {
-        if ($budget->value > 500) {
-            return $budget->value * .03;
-        }
+        return $budget->value > 500;
+    }
 
+    protected function applyMaximumTax(Budget $budget): float
+    {
+        return $budget->value * .03;
+    }
+
+    protected function applyMinimumTax(Budget $budget): float
+    {
         return $budget->value * .02;
     }
 }

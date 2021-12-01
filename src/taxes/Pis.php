@@ -4,14 +4,20 @@ namespace PersonalProjects\DesignPattern\Taxes;
 
 use PersonalProjects\DesignPattern\Budget;
 
-class Pis implements Tax
+class Pis extends TwoRateTax
 {
-    public function taxCalculate(Budget $budget): float
+    protected function mustApplyMaximumTax(Budget $budget): bool
     {
-        if ($budget->value > 300 && $budget->quantityItens > 3) {
-            return $budget->value * .04;
-        }
+        return $budget->value > 300 && $budget->quantityItens > 3;
+    }
 
+    protected function applyMaximumTax(Budget $budget): float
+    {
+        return $budget->value * .04;
+    }
+
+    protected function applyMinimumTax(Budget $budget): float
+    {
         return $budget->value * .025;
     }
 }
