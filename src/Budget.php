@@ -2,31 +2,37 @@
 
 namespace PersonalProjects\DesignPattern;
 
-use DomainException;
+use PersonalProjects\DesignPattern\BudgetStates\BudgetState;
+use PersonalProjects\DesignPattern\BudgetStates\InApproval;
 
 class Budget
 {
     public float $value;
     public int $quantityItens;
-    public string $state;
+    public BudgetState $state;
+
+    public function __construct()
+    {
+        $this->state = new InApproval();
+    }
 
     public function applyExtraDiscount(): void
     {
-        $this->value -= $this->calculateExtraDiscount();
+        $this->value -= $this->state->calculateExtraDiscount($this);
     }
 
-    private function calculateExtraDiscount (): float
+    public function approve(Budget $budget)
     {
-        if ($this->state === 'ON_APPROVAL') {
-            return $this->value * .05;
-        }
-        
-        if ($this->state === 'APPROVED') {
-            return $this->value * .02;
-        }
+        $this->state->approve($this);
+    }
 
-        throw new DomainException(
-            "Approved and finalized budgets cannot receive discount"
-        );
+    public function repprove(Budget $budget)
+    {
+        $this->state->repprove($this);
+    }
+
+    public function complete(Budget $budget)
+    {
+        $this->state->complete($this);
     }
 }
