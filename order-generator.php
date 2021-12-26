@@ -3,9 +3,10 @@
 require_once 'vendor/autoload.php';
 
 use PersonalProjects\DesignPattern\Commands\Order\OrderGenerate;
+use PersonalProjects\DesignPattern\Commands\Order\OrderGenerateHandler;
 
-$budgetQuantityItens = $argv[2];
-$budgetValue = $argv[1];
+$budgetQuantityItens = $argv[1];
+$budgetValue = $argv[2];
 $clientName = $argv[3];
 
 $orderGenerate = new OrderGenerate(
@@ -14,4 +15,5 @@ $orderGenerate = new OrderGenerate(
     $clientName
 );
 
-$orderGenerate->execute();
+$orderGeneratehandler = new OrderGenerateHandler();
+$orderGeneratehandler->execute($orderGenerate);

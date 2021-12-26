@@ -2,12 +2,7 @@
 
 namespace PersonalProjects\DesignPattern\Commands\Order;
 
-use DateTimeImmutable;
-use PersonalProjects\DesignPattern\Budget;
-use PersonalProjects\DesignPattern\Commands\Command;
-use PersonalProjects\DesignPattern\Order;
-
-class OrderGenerate implements Command
+class OrderGenerate
 {
     private int $budgetQuantityItens;
     private float $budgetValue;
@@ -24,18 +19,18 @@ class OrderGenerate implements Command
         $this->clientName = $clientName;
     }
 
-    public function execute()
+    public function getBudgetQuantityItens() : int
     {
-        $budget = new Budget();
-        $budget->quantityItens = $this->budgetQuantityItens;
-        $budget->value = $this->budgetValue;
-
-        $order = new Order();
-        $order->completedDate = new DateTimeImmutable();
-        $order->clientName = $this->clientName;
-        $order->budget = $budget;
-
-        echo "Create order in database " . PHP_EOL;
-        echo "Send e-mail " . PHP_EOL;
+        return $this->budgetQuantityItens;
+    }
+    
+    public function getBudgetValue() : float
+    {
+        return $this->budgetValue;
+    }
+    
+    public function getClientName() : string
+    {
+        return $this->clientName;
     }
 }
