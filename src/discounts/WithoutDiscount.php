@@ -1,6 +1,6 @@
 <?php
 
-namespace PersonalProjects\DesignPattern\discounts;
+namespace PersonalProjects\DesignPattern\Discounts;
 
 use PersonalProjects\DesignPattern\Budget;
 
