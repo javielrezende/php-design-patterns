@@ -5,7 +5,6 @@ namespace PersonalProjects\DesignPattern;
 use PersonalProjects\DesignPattern\discounts\MoreThanFiveHundredDiscount;
 use PersonalProjects\DesignPattern\discounts\MoreThanFiveItensDiscount;
 use PersonalProjects\DesignPattern\discounts\WithoutDiscount;
-use PersonalProjects\DesignPattern\Taxes\Tax;
 
 class DiscountCalculator
 {
