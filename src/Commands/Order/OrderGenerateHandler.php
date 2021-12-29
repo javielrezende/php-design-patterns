@@ -4,6 +4,9 @@ namespace PersonalProjects\DesignPattern\Commands\Order;
 
 use DateTimeImmutable;
 use PersonalProjects\DesignPattern\Budget;
+use PersonalProjects\DesignPattern\Commands\Order\Actions\CreateOrderDatabase;
+use PersonalProjects\DesignPattern\Commands\Order\Actions\GenerateLog;
+use PersonalProjects\DesignPattern\Commands\Order\Actions\SendMail;
 use PersonalProjects\DesignPattern\Order;
 
 class OrderGenerateHandler
@@ -28,13 +31,13 @@ class OrderGenerateHandler
         $order->clientName = $orderGenerate->getClientName();
         $order->budget = $budget;
 
-        // OrderRepository
-        echo "Create order in database " . PHP_EOL;
+        $createOrderDatabase = new CreateOrderDatabase();
+        $createOrderDatabase->execute();
         
-        // MailService
-        echo "Send e-mail " . PHP_EOL;
+        $sendMail = new SendMail();
+        $sendMail->execute();
         
-        // LogWriter
-        echo "Writes log " . PHP_EOL;
+        $generateLog = new GenerateLog();
+        $generateLog->execute();
     }
 }
