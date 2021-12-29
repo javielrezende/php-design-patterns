@@ -2,7 +2,7 @@
 
 namespace PersonalProjects\DesignPattern\Commands\Order\Actions;
 
-class GenerateLog
+class GenerateLog implements ActionAfterOrderGenerate
 {
     public function execute()
     {

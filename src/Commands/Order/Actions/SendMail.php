@@ -2,7 +2,7 @@
 
 namespace PersonalProjects\DesignPattern\Commands\Order\Actions;
 
-class SendMail
+class SendMail implements ActionAfterOrderGenerate
 {
     public function execute()
     {

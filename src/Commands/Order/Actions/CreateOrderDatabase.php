@@ -2,7 +2,7 @@
 
 namespace PersonalProjects\DesignPattern\Commands\Order\Actions;
 
-class CreateOrderDatabase
+class CreateOrderDatabase implements ActionAfterOrderGenerate
 {
     public function execute()
     {
