@@ -4,7 +4,7 @@ namespace PersonalProjects\DesignPattern\BudgetStates;
 
 use PersonalProjects\DesignPattern\Budget;
 
-class Approved
+class Approved extends BudgetState
 {
     public function calculateExtraDiscount (Budget $budget): float
     {
