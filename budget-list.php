@@ -30,7 +30,7 @@ echo PHP_EOL;
 echo "--------------------------------------------------" . PHP_EOL;
 echo "Valor dos orçamentos" . PHP_EOL;
 
-foreach ($budgetList->getBudgets() as $budget) {
+foreach ($budgetList as $budget) {
     echo PHP_EOL;
     echo "Valor: {$budget->value}" . PHP_EOL;
     echo 'Estado: ' . get_class($budget->state) . PHP_EOL;

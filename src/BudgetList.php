@@ -2,10 +2,12 @@
 
 namespace PersonalProjects\DesignPattern;
 
+use ArrayIterator;
+use IteratorAggregate;
 use PersonalProjects\DesignPattern\BudgetStates\BudgetState;
 use PersonalProjects\DesignPattern\BudgetStates\InApproval;
 
-class BudgetList
+class BudgetList implements IteratorAggregate
 {
     /** @var Budget[] */
     public array $budgets;
@@ -23,5 +25,10 @@ class BudgetList
     public function getBudgets(): array
     {
         return $this->budgets;
+    }
+
+    public function getIterator(): ArrayIterator
+    {
+        return new ArrayIterator($this->budgets);
     }
 }
