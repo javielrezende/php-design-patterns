@@ -1,6 +1,7 @@
 <?php
 
 use PersonalProjects\DesignPattern\Budget;
+use PersonalProjects\DesignPattern\BudgetList;
 
 require_once 'vendor/autoload.php';
 
@@ -20,17 +21,16 @@ $budget3->approve();
 $budget3->complete();
 $budget3->value = 1350;
 
-$budgetList = [
-    $budget1,
-    $budget2,
-    $budget3
-];
+$budgetList = new BudgetList();
+$budgetList->addBudget($budget1);
+$budgetList->addBudget($budget2);
+$budgetList->addBudget($budget3);
 
 echo PHP_EOL;
 echo "--------------------------------------------------" . PHP_EOL;
 echo "Valor dos orçamentos" . PHP_EOL;
 
-foreach ($budgetList as $budget) {
+foreach ($budgetList->getBudgets() as $budget) {
     echo PHP_EOL;
     echo "Valor: {$budget->value}" . PHP_EOL;
     echo 'Estado: ' . get_class($budget->state) . PHP_EOL;
