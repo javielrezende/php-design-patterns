@@ -21,17 +21,17 @@ class Budget
         $this->value -= $this->state->calculateExtraDiscount($this);
     }
 
-    public function approve(Budget $budget)
+    public function approve()
     {
         $this->state->approve($this);
     }
 
-    public function repprove(Budget $budget)
+    public function repprove()
     {
         $this->state->repprove($this);
     }
 
-    public function complete(Budget $budget)
+    public function complete()
     {
         $this->state->complete($this);
     }

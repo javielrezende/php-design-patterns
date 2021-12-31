@@ -16,7 +16,7 @@ class InApproval extends BudgetState
         $budget->state = new Approved();
     }
 
-    public function reprove(Budget $budget)
+    public function repprove(Budget $budget)
     {
         $budget->state = new Failed();
     }
